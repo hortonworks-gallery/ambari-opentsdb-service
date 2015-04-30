@@ -25,7 +25,7 @@ sudo service ambari-server restart
 
 On bottom left -> Actions -> Add service -> check OpenTSDB server -> Next -> Next -> Customize as needed -> Next -> Deploy
 
-You can customize the port, ZK quorum, ZK dir in the start command
+You can customize the port, ZK quorum, ZK dir in the start command. **Note that Hbase must be started if the option to automatically create OpenTSDB schema is selected**
 
 ![Image](../master/screenshots/screenshot-vnc-config.png?raw=true)
 

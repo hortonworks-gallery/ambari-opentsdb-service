@@ -21,7 +21,7 @@
   <property require-input="true">
     <name>opentsdb.create_schema</name>
     <value>true</value>
-    <description>Whether OpenTSDB schema should be created</description>
+    <description>Whether OpenTSDB schema should be created. Hbase must be started if this is selected</description>
   </property>   
 
   <property>
