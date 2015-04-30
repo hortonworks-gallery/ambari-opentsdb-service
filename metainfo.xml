@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<metainfo>
+    <schemaVersion>2.0</schemaVersion>
+    <services>
+        <service>
+            <name>OPENTSDB</name>
+            <displayName>OpenTSDB</displayName>
+            <comment>The Scalable Time Series Database. Store and serve massive amounts of time series data without losing granularity</comment>
+            <version>0.0.1</version>
+            <components>
+                <component>
+                  <name>OPENTSDB_MASTER</name>
+                  <displayName>OpenTSDB</displayName>
+                  <category>MASTER</category>
+                  <cardinality>1</cardinality>
+                  <commandScript>
+                    <script>scripts/master.py</script>
+                    <scriptType>PYTHON</scriptType>
+                    <timeout>5000</timeout>
+                  </commandScript>
+                </component>
+            </components>
+            <osSpecifics>
+              <osSpecific>
+                <osFamily>redhat6</osFamily>
+                <packages>
+                   <package><name>gnuplot</name></package>                                                 
+                </packages>
+              </osSpecific>
+            </osSpecifics> 
+      	    <configuration-dependencies>
+        	<config-type>opentsdb-config</config-type>
+      	    </configuration-dependencies>
+            <restartRequiredAfterChange>false</restartRequiredAfterChange>
+        </service>
+    </services>
+</metainfo>

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+ 
+<configuration>
+
+
+  <property require-input="true">
+    <name>opentsdb.install_dir</name>
+    <value>/root/opentsdb</value>
+    <description>Directory under which OpenTSDP will be installed (e.g. /root/opentsdb). Will be created if not already exists.</description>
+  </property> 
+
+
+  <property require-input="true">
+    <name>opentsdb.download_url</name>
+    <value>https://github.com/OpenTSDB/opentsdb/releases/download/v2.0.1/opentsdb-2.0.1.tar.gz</value>
+    <description>Online location to download OpenTSDB .tar.gz package from</description>
+  </property> 
+
+
+  <property require-input="true">
+    <name>opentsdb.create_schema</name>
+    <value>true</value>
+    <description>Whether OpenTSDB schema should be created</description>
+  </property>   
+
+  <property>
+    <name>opentsdb.start_cmd</name>
+    <value>/build/tsdb tsd --zkbasedir=/hbase-unsecure --port=9999 --zkquorum=localhost:2181 --cachedir=/tmp/tsd --staticroot=build/staticroot --auto-metric</value>
+    <description>Command to launch demo daemon that Ambari will monitor. Port, zk base dir, zk quorum, cache dir can be customized</description>
+  </property> 
+
+  
+  <property>
+    <name>opentsdb.log</name>
+    <value>/var/log/opentsdb.log</value>
+    <description>Log file (required)</description>
+  </property> 
+  
+</configuration>
+
