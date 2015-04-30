@@ -22,12 +22,13 @@ sudo service ambari-server restart
 ```
 
 - Then you can click on 'Add Service' from the 'Actions' dropdown menu in the bottom left of the Ambari dashboard:
+![Image](../master/screenshots/service-install.png?raw=true)
 
 On bottom left -> Actions -> Add service -> check OpenTSDB server -> Next -> Next -> Customize as needed -> Next -> Deploy
 
 You can customize the port, ZK quorum, ZK dir in the start command. **Note that Hbase must be started if the option to automatically create OpenTSDB schema is selected**
 
-![Image](../master/screenshots/screenshot-vnc-config.png?raw=true)
+![Image](../master/screenshots/service-install-options.png?raw=true)
 
 - On successful deployment you will see the OpenTSDB service as part of Ambari stack and will be able to start/stop the service from here:
 ![Image](../master/screenshots/service-status.png?raw=true)
