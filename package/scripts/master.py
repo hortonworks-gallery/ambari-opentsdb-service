@@ -14,7 +14,7 @@ class Master(Script):
     Execute('wget ' + params.download_url + ' -O /tmp/opentsdb.tar.gz')
     Execute('tar -zxvf /tmp/opentsdb.tar.gz -C ' + params.install_dir )
     Execute('/bin/rm -f /tmp/opentsdb.tar.gz')
-    Execute('mv ' + params.install_dir + '/*/* ' + params.install_dir)
+    Execute('mv ' + params.install_dir + '/*/* ' + params.install_dir, ignore_failures=True)
     
     if params.create_schema:
       Execute('cd ' + params.install_dir + '; env COMPRESSION=NONE HBASE_HOME=/usr/hdp/current/hbase-client ./src/create_table.sh; ')
