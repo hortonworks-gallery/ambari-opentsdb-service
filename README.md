@@ -30,13 +30,10 @@ You can customize the port, ZK quorum, ZK dir in the start command. **Note that 
 ![Image](../master/screenshots/screenshot-vnc-config.png?raw=true)
 
 - On successful deployment you will see the OpenTSDB service as part of Ambari stack and will be able to start/stop the service from here:
-![Image](../master/screenshots/screenshot-vnc-stack.png?raw=true)
-
-- When you've completed the install process, OpenTSDB server will appear in Ambari 
-![Image](../master/screenshots/screenshot-freeipa-stack.png?raw=true)
+![Image](../master/screenshots/service-status.png?raw=true)
 
 - You can see the parameters you configured under 'Configs' tab
-![Image](../master/screenshots/screenshot-freeipa-stack-config.png?raw=true)
+![Image](../master/screenshots/service-config.png?raw=true)
 
 - One benefit to wrapping the component in Ambari service is that you can now monitor/manage this service remotely via REST API
 ```
@@ -70,11 +67,11 @@ curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X PUT -d '{"RequestInfo"
     ```
 
 
-#### OpenWebUI
+#### Open WebUI
 
-- The OpenTSDB webUI login page should come up at the below link: 
+- The OpenTSDB webUI login page should come up at the below link (or whichever port you configured) 
 http://sandbox.hortonworks.com:9999
 
 - You can also open it from within Ambari via [iFrame view](https://github.com/abajwa-hw/iframe-view)
-![Image](https://github.com/abajwa-hw/iframe-view/blob/master/screenshots/phpldap.png)
+![Image](../master/screenshots/service-view.png?raw=true)
 
