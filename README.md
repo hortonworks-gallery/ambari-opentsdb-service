@@ -70,7 +70,31 @@ curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X PUT -d '{"RequestInfo"
 
 #### Open WebUI
 
-- The OpenTSDB webUI login page should come up at the below link (or whichever port you configured) 
+
+- Use below sample code to pull 30 day intraday stock prices for a few securities in OpenTSDB and csv format, and import into TSDB
+```
+cd
+/bin/rm -f prices.csv
+/bin/rm -f opentsd.input
+wget https://raw.githubusercontent.com/abajwa-hw/opentsdb-service/master/scripts/google_intraday.py
+python google_intraday.py AAPL > prices.csv
+python google_intraday.py GOOG >> prices.csv
+python google_intraday.py HDP >> prices.csv
+python google_intraday.py ORCL >> prices.csv
+python google_intraday.py MSFT >> prices.csv
+
+/root/opentsdb/build/tsdb import opentsd.input --zkbasedir=/hbase-unsecure --zkquorum=localhost:2181 --auto-metric
+
+```
+
+- Query the data in OpenTSDB webUI by entering values for:
+  -  From and To  (e.g. last month)
+  - Check Autoreload
+  - Metric: (e.g. volume)
+  - Tags: (e.g. symbol GOOG)
+  - You can similarly create multiple tabs 
+
+- The OpenTSDB webUI login page should be at the below link (or whichever port you configured) 
 http://sandbox.hortonworks.com:9999
 
 - You can also open it from within Ambari via [iFrame view](https://github.com/abajwa-hw/iframe-view)
