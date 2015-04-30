@@ -71,7 +71,7 @@ curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X PUT -d '{"RequestInfo"
 #### Open WebUI
 
 
-- Use below sample code (taken from [here](http://trading.cheno.net/downloading-google-intraday-historical-data-with-python/))to pull 30 day intraday stock prices for a few securities in OpenTSDB and csv format, and import into TSDB
+- Use below sample code (taken from [here](http://trading.cheno.net/downloading-google-intraday-historical-data-with-python/)) to pull 30 day intraday stock prices for a few securities in OpenTSDB and csv format, and import into TSDB
 ```
 cd
 /bin/rm -f prices.csv
