@@ -44,8 +44,8 @@ class Master(Script):
 
     if not os.path.exists(status_params.opentsdb_piddir):
       os.makedirs(status_params.opentsdb_piddir)
-      
-    Execute('nohup sh -c "'+params.install_dir + params.start_cmd+'" >> '+params.log+' 2>&1 & echo $! > ' + status_params.opentsdb_pidfile)
+    Execute('echo Starting process: ' + params.install_dir + params.start_cmd )  
+    Execute('cd '+params.install_dir+'; nohup sh -c "'+params.install_dir + params.start_cmd+'" >> '+params.log+' 2>&1 & echo $! > ' + status_params.opentsdb_pidfile)
 	
   def status(self, env):
     import status_params
