@@ -11,13 +11,13 @@ class Master(Script):
   
     if not os.path.exists(params.install_dir):  
       os.makedirs(params.install_dir)
-    Execute('wget ' + params.download_url + ' -O /tmp/opentsdb.tar.gz')
-    Execute('tar -zxvf /tmp/opentsdb.tar.gz -C ' + params.install_dir )
-    Execute('/bin/rm -f /tmp/opentsdb.tar.gz')
-    Execute('mv ' + params.install_dir + '/*/* ' + params.install_dir, ignore_failures=True)
+    Execute('wget ' + params.download_url + ' -O /tmp/opentsdb.tar.gz >> '+params.log)
+    Execute('tar -zxvf /tmp/opentsdb.tar.gz -C ' + params.install_dir + ' >> '+params.log )
+    Execute('/bin/rm -f /tmp/opentsdb.tar.gz >> '+params.log)
+    Execute('mv ' + params.install_dir + '/*/* ' + params.install_dir + ' >> '+params.log, ignore_failures=True)
     
     if params.create_schema:
-      Execute('cd ' + params.install_dir + '; env COMPRESSION=NONE HBASE_HOME=/usr/hdp/current/hbase-client ./src/create_table.sh; ')
+      Execute('cd ' + params.install_dir + '; env COMPRESSION=NONE HBASE_HOME=/usr/hdp/current/hbase-client ./src/create_table.sh; >> '+params.log)
 
   def configure(self, env):
     import params
@@ -41,8 +41,8 @@ class Master(Script):
     import status_params
     self.configure(env)
 
-    if not os.path.exists(status_params.stack_piddir):
-      os.makedirs(status_params.stack_piddir)
+    if not os.path.exists(status_params.opentsdb_piddir):
+      os.makedirs(status_params.opentsdb_piddir)
       
     Execute('nohup sh -c "'+params.install_dir + params.start_cmd+'" >> '+params.log+' 2>&1 & echo $! > ' + status_params.opentsdb_pidfile)
 	
