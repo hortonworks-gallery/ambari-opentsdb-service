@@ -87,6 +87,9 @@ python google_intraday.py MSFT >> prices.csv
 
 ```
 
+- The OpenTSDB webUI login page should be at the below link (or whichever port you configured) 
+http://sandbox.hortonworks.com:9999
+
 - Query the data in OpenTSDB webUI by entering values for:
   -  From and To  (e.g. last month)
   - Check Autoreload
@@ -94,8 +97,6 @@ python google_intraday.py MSFT >> prices.csv
   - Tags: (e.g. symbol GOOG)
   - You can similarly create multiple tabs 
 
-- The OpenTSDB webUI login page should be at the below link (or whichever port you configured) 
-http://sandbox.hortonworks.com:9999
 
 - You can also open it from within Ambari via [iFrame view](https://github.com/abajwa-hw/iframe-view)
 ![Image](../master/screenshots/service-view.png?raw=true)
