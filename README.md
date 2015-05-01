@@ -14,6 +14,11 @@ ssh root@sandbox.hortonworks.com
 /root/start_ambari.sh
 ```
 
+- Make sure javac is in the path
+```
+yum install -y java-1.7.0-openjdk-devel
+```
+
 - To deploy the OpenTSDB stack, run below
 ```
 cd /var/lib/ambari-server/resources/stacks/HDP/2.2/services
