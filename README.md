@@ -73,10 +73,10 @@ curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X PUT -d '{"RequestInfo"
     ```
 
 
-#### Open WebUI
 
+#### Import stock data
 
-- Use below sample code (taken from [here](http://trading.cheno.net/downloading-google-intraday-historical-data-with-python/)) to pull 30 day intraday stock prices for a few securities in OpenTSDB and csv format, and import into TSDB
+- Use below sample code (taken from [here](http://trading.cheno.net/downloading-google-intraday-historical-data-with-python/)) to pull 30 day intraday stock prices for a few securities in both OpenTSDB and csv formats
 ```
 cd
 /bin/rm -f prices.csv
@@ -87,10 +87,19 @@ python google_intraday.py GOOG >> prices.csv
 python google_intraday.py HDP >> prices.csv
 python google_intraday.py ORCL >> prices.csv
 python google_intraday.py MSFT >> prices.csv
-
-/root/opentsdb/build/tsdb import opentsd.input --zkbasedir=/hbase-unsecure --zkquorum=localhost:2181 --auto-metric
-
 ```
+
+- Review opentsd.input which contains the stock proces in OpenTSDB-compatible format
+```
+tail opentsd.input
+```
+
+- Import data from opentsd.input into OpenTSDB
+```
+/root/opentsdb/build/tsdb import opentsd.input --zkbasedir=/hbase-unsecure --zkquorum=localhost:2181 --auto-metric
+```
+
+#### Open WebUI
 
 - The OpenTSDB webUI login page should be at the below link (or whichever port you configured) 
 http://sandbox.hortonworks.com:9999
