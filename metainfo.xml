@@ -24,6 +24,7 @@
               <osSpecific>
                 <osFamily>redhat6</osFamily>
                 <packages>
+                   <package>java-1.7.0-openjdk-devel</package>
                    <package><name>gnuplot</name></package>                                                 
                 </packages>
               </osSpecific>

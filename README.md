@@ -14,11 +14,18 @@ ssh root@sandbox.hortonworks.com
 /root/start_ambari.sh
 ```
 
-- Make sure javac is in the path
+- Start HBase service from Ambari and ensure root has authority to create tables. You can do this by trying to create a test table
 ```
-yum install -y java-1.7.0-openjdk-devel
+hbase shell
+
+create 't1', 'f1', 'f2', 'f3'
 ```
 
+  - If this fails with the below, you will need to provide appropriate access via Ranger (http://sandbox.hortonworks.com:6080)
+  ```
+  ERROR: org.apache.hadoop.hbase.security.AccessDeniedException: Insufficient permissions for user 'root (auth:SIMPLE)' (global, action=CREATE)
+  ```
+  
 - To deploy the OpenTSDB stack, run below
 ```
 cd /var/lib/ambari-server/resources/stacks/HDP/2.2/services
@@ -64,12 +71,23 @@ curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X PUT -d '{"RequestInfo"
   - Delete the service
   
     ```
-    curl -u admin:admin -i -H 'X-Requested-By: ambari' -X DELETE http://sandbox.hortonworks.com:8080/api/v1/clusters/Sandbox/services/OPENTSDB
+#Ambari password
+export PASSWORD=admin
+#Ambari host
+export AMBARI_HOST=localhost
+export SERVICE=OPENTSDB
+
+#detect name of cluster
+output=`curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari'  http://$AMBARI_HOST:8080/api/v1/clusters`
+CLUSTER=`echo $output | sed -n 's/.*"cluster_name" : "\([^\"]*\)".*/\1/p'`
+curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X PUT -d '{"RequestInfo": {"context" :"Stop $SERVICE via REST"}, "Body": {"ServiceInfo": {"state": "INSTALLED"}}}' http://$AMBARI_HOST:8080/api/v1/clusters/$CLUSTER/services/$SERVICE    
+curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X DELETE http://$AMBARI_HOST:8080/api/v1/clusters/$CLUSTER/services/$SERVICE
     ```
   - Remove artifacts 
   
     ```
-    /var/lib/ambari-server/resources/stacks/HDP/2.2/services/opentsdb-stack/remove.sh
+    rm -rf /root/opentsdb
+    rm -rf /var/lib/ambari-server/resources/stacks/HDP/2.2/services/opentsdb-service/
     ```
 
 
