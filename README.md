@@ -1,5 +1,5 @@
-#### An Ambari Stack for OpenTSDB
-Ambari stack for easily installing and managing OpenTSDB on HDP cluster
+#### An Ambari service for OpenTSDB
+Ambari service for easily installing and managing OpenTSDB on HDP cluster
 
 Author: [Ali Bajwa](https://www.linkedin.com/in/aliabajwa)
 
@@ -30,7 +30,7 @@ create 't1', 'f1', 'f2', 'f3'
   ERROR: org.apache.hadoop.hbase.security.AccessDeniedException: Insufficient permissions for user 'root (auth:SIMPLE)' (global, action=CREATE)
   ```
   
-- To deploy the OpenTSDB stack, run below
+- To deploy the OpenTSDB service, run below
 ```
 cd /var/lib/ambari-server/resources/stacks/HDP/2.2/services
 git clone https://github.com/abajwa-hw/opentsdb-service.git   
