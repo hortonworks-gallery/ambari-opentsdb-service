@@ -95,6 +95,7 @@ curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X DELETE http://$AMBARI_
     ```
 
 
+---------------
 
 #### Import stock data
 
@@ -120,6 +121,9 @@ tail opentsd.input
 ```
 /root/opentsdb/build/tsdb import opentsd.input --zkbasedir=/hbase-unsecure --zkquorum=localhost:2181 --auto-metric
 ```
+
+-----------  
+
 
 #### Open WebUI
 
