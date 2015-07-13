@@ -33,10 +33,17 @@ create 't1', 'f1', 'f2', 'f3'
 - To deploy the OpenTSDB service, run below
 ```
 cd /var/lib/ambari-server/resources/stacks/HDP/2.2/services
-git clone https://github.com/abajwa-hw/opentsdb-service.git   
-sudo service ambari-server restart
+git clone https://github.com/abajwa-hw/opentsdb-service.git 
 ```
+- Restart Ambari
+```
+#on sandbox
+sudo service ambari restart
 
+#on non-sandbox clusters  
+sudo service ambari-server restart
+sudo service ambari-agent restart
+```
 - Then you can click on 'Add Service' from the 'Actions' dropdown menu in the bottom left of the Ambari dashboard:
 ![Image](../master/screenshots/service-install.png?raw=true)
 
