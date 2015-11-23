@@ -5,20 +5,19 @@ Author: [Ali Bajwa](https://www.linkedin.com/in/aliabajwa)
 
 ##### Setup
 
-- Download HDP 2.2.4.2 sandbox VM image (Sandbox_HDP_2.2.4.2_VMWare.ova) from [Hortonworks website](http://hortonworks.com/products/hortonworks-sandbox/)
-- Import Sandbox_HDP_2.2.4.2_VMWare.ova into VMWare and ensure the VM memory size is set to at least 8GB
+- Download HDP latest sandbox VM image (.ova file) from [Hortonworks website](http://hortonworks.com/products/hortonworks-sandbox/)
+- Import ova file into VMWare and ensure the VM memory size is set to at least 8GB
 - Now start the VM
 - After it boots up, find the IP address of the VM and add an entry into your machines hosts file e.g.
 ```
 192.168.191.241 sandbox.hortonworks.com sandbox    
 ```
-- Connect to the VM via SSH (password hadoop) and start Ambari server
+- Connect to the VM via SSH (password hadoop)
 ```
 ssh root@sandbox.hortonworks.com
-/root/start_ambari.sh
 ```
 
-- Start HBase service from Ambari and ensure root has authority to create tables. You can do this by trying to create a test table
+- Start HBase service from Ambari and ensure Hbase is up and root has authority to create tables. You can do this by trying to create a test table
 ```
 hbase shell
 
@@ -32,8 +31,8 @@ create 't1', 'f1', 'f2', 'f3'
   
 - To deploy the OpenTSDB service, run below
 ```
-cd /var/lib/ambari-server/resources/stacks/HDP/2.2/services
-git clone https://github.com/abajwa-hw/opentsdb-service.git 
+VERSION=`hdp-select status hadoop-client | sed 's/hadoop-client - \([0-9]\.[0-9]\).*/\1/'`
+sudo git clone https://github.com/hortonworks-gallery/ambari-opentsdb-service.git /var/lib/ambari-server/resources/stacks/HDP/$VERSION/services/OPENTSDB
 ```
 - Restart Ambari
 ```
@@ -132,18 +131,24 @@ tail opentsd.input
 -----------  
 
 
-#### Open WebUI
+#### Open WebUI and import stock data
 
 - The OpenTSDB webUI login page should be at the below link (or whichever port you configured) 
 http://sandbox.hortonworks.com:9999
 
 - Query the data in OpenTSDB webUI by entering values for:
-  -  From and To  (e.g. last month)
+  -  From: pick a date from 3 weeks ago
+  - To: pick todays date
   - Check Autoreload
   - Metric: (e.g. volume)
   - Tags: (e.g. symbol GOOG)
   - You can similarly create multiple tabs 
+    - Tags: symbol ORCL
+    - Tags: symbol AAPL    
 
+- To make the charts smoother:
+  - Under Style tab, check the 'Smooth' checkbox
+  - Under Axes tab, check the 'Log scale' checkbox
 
 - You can also open it from within Ambari via [iFrame view](https://github.com/abajwa-hw/iframe-view)
 ![Image](../master/screenshots/service-view.png?raw=true)
