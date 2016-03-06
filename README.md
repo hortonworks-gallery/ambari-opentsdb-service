@@ -1,6 +1,11 @@
 #### An Ambari service for OpenTSDB
 Ambari service for easily installing and managing OpenTSDB on HDP cluster
 
+Limitations:
+
+- This is not an officially supported service and *is not meant to be deployed in production systems*. It is only meant for testing demo/purposes
+- It does not support Ambari/HDP upgrade process and will cause upgrade problems if not removed prior to upgrade
+
 Author: [Ali Bajwa](https://www.linkedin.com/in/aliabajwa)
 
 ##### Setup
