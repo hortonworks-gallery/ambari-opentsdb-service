@@ -83,7 +83,7 @@ curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X PUT -d '{"RequestInfo"
 
 - To remove the OpenTSDB service: 
   - Stop the service via Ambari
-  - Delete the service
+  - Unregister the service by running below from Ambari node
   
     ```
 #Ambari password
@@ -95,8 +95,21 @@ export SERVICE=OPENTSDB
 #detect name of cluster
 output=`curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari'  http://$AMBARI_HOST:8080/api/v1/clusters`
 CLUSTER=`echo $output | sed -n 's/.*"cluster_name" : "\([^\"]*\)".*/\1/p'`
-curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X PUT -d '{"RequestInfo": {"context" :"Stop $SERVICE via REST"}, "Body": {"ServiceInfo": {"state": "INSTALLED"}}}' http://$AMBARI_HOST:8080/api/v1/clusters/$CLUSTER/services/$SERVICE    
+
+#unregister service from ambari
 curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X DELETE http://$AMBARI_HOST:8080/api/v1/clusters/$CLUSTER/services/$SERVICE
+
+#if above errors out with 500 error code, run below first to fully stop the service then re-run above to unregister service from Ambari
+#curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X PUT -d '{"RequestInfo": {"context" :"Stop $SERVICE via REST"}, "Body": {"ServiceInfo": {"state": "INSTALLED"}}}' http://$AMBARI_HOST:8080/api/v1/clusters/$CLUSTER/services/$SERVICE
+
+#now restart ambari
+
+#sandbox
+service ambari restart
+
+#non-sandbox
+service ambari-server restart
+
     ```
   - Remove artifacts 
   
