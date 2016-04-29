@@ -81,6 +81,8 @@ curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X PUT -d '{"RequestInfo"
 ```
 
 
+### Remove service
+
 - To remove the OpenTSDB service: 
   - Stop the service via Ambari
   - Unregister the service by running below from Ambari node
