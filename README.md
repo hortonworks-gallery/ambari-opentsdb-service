@@ -10,7 +10,7 @@ Author: [Ali Bajwa](https://www.linkedin.com/in/aliabajwa)
 
 ##### Changelog
 
-- Dec 12 2016: Updated for OpenTSDB 2.2.1
+- Dec 12 2016: Updated for OpenTSDB 2.2.1 and tested on HDP 2.5.3 / Ambari 2.4.1.0 on RHEL 7
 
 ##### Setup
 

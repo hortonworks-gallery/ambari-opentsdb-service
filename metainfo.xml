@@ -22,7 +22,7 @@
             </components>
             <osSpecifics>
               <osSpecific>
-                <osFamily>redhat6</osFamily>
+                <osFamily>redhat6,redhat7</osFamily>
                 <packages>
                    <package><name>java-1.7.0-openjdk-devel</name></package>
                    <package><name>gnuplot</name></package>                                                 
