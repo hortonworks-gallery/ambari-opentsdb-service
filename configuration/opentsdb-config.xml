@@ -13,7 +13,7 @@
 
   <property require-input="true">
     <name>opentsdb.download_url</name>
-    <value>https://github.com/OpenTSDB/opentsdb/releases/download/v2.0.1/opentsdb-2.0.1.tar.gz</value>
+    <value>https://github.com/OpenTSDB/opentsdb/releases/download/v2.2.1/opentsdb-2.2.1.tar.gz</value>
     <description>Online location to download OpenTSDB .tar.gz package from</description>
   </property> 
 

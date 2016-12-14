@@ -3,10 +3,10 @@
     <schemaVersion>2.0</schemaVersion>
     <services>
         <service>
-            <name>OPENTSDB</name>
+            <name>OPENTSDBDEMO</name>
             <displayName>OpenTSDB</displayName>
-            <comment>The Scalable Time Series Database. Store and serve massive amounts of time series data without losing granularity</comment>
-            <version>0.0.1</version>
+            <comment>The Scalable Time Series Database. Store and serve massive amounts of time series data without losing granularity. This service is for &lt;b&gt;Demo purposes only&lt;/b&gt; and is &lt;b&gt;not officially supported&lt;/b&gt;</comment>
+            <version>2.2.1</version>
             <components>
                 <component>
                   <name>OPENTSDB_MASTER</name>

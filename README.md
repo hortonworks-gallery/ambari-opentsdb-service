@@ -8,6 +8,10 @@ Limitations:
 
 Author: [Ali Bajwa](https://www.linkedin.com/in/aliabajwa)
 
+##### Changelog
+
+- Dec 12 2016: Updated for OpenTSDB 2.2.1
+
 ##### Setup
 
 - Download HDP latest sandbox VM image (.ova file) from [Hortonworks website](http://hortonworks.com/products/hortonworks-sandbox/)
